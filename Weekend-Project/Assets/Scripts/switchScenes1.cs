@@ -9,8 +9,8 @@ public class switchScenes1 : MonoBehaviour
     void OnMouseDown()
     {
         Debug.Log("clicked");
-        
-         SceneManager.LoadScene(0);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
 
     }
     

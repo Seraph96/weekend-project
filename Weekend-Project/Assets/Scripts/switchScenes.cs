@@ -10,7 +10,7 @@ public class switchScenes : MonoBehaviour
     {
         Debug.Log("clicked");
         
-         SceneManager.LoadScene(1);
+         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1 );
 
     }
     
