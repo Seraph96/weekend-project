@@ -5,9 +5,9 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public GameObject player;
-    public float offsetX = -5;
-    public float offsetZ = 0;
-    public float offsetY = 0;
+    public float offsetX = 0;
+    public float offsetZ = -10;
+    public float offsetY = 10;
 
     // Update is called once per frame
     void Update()
