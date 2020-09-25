@@ -465,7 +465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 2038869167}
-  offset: {x: 0, y: -1, z: 1.2}
+  offset: {x: 0, y: -0.9, z: 0.75}
   pitch: 2
 --- !u!1 &2038869161 stripped
 GameObject:
@@ -546,3 +546,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1335651939}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2038869168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038869161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c0141e5dec10d141ae3aa419d34d269, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
