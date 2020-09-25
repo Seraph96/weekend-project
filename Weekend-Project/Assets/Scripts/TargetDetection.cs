@@ -17,6 +17,7 @@ public class TargetDetection : MonoBehaviour
     private Animator animator;
     private bool attackPossible = true;
     private Ray ray;
+    private AudioSource sound_walk;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +28,7 @@ public class TargetDetection : MonoBehaviour
         minDistance = minDistance + agent.radius;
         agent.stoppingDistance = minDistance;
         mobController = gameObject.GetComponent<MobController>();
+        sound_walk = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -49,7 +51,6 @@ public class TargetDetection : MonoBehaviour
         else
         {
             StopWalking();
-            Debug.Log("NIEMAND DA!");
         }
     }
 
@@ -72,6 +73,10 @@ public class TargetDetection : MonoBehaviour
     // GameObject walks to target.
     void WalkToTarget(Vector3 targetPosition)
     {
+        if (!sound_walk.isPlaying)
+        {
+            sound_walk.Play();
+        }
         animator.SetBool("move", true);
         agent.destination = targetPosition;
         //GetComponent<Rigidbody>().velocity = transform.TransformDirection(Vector3.forward).normalized * speed;
@@ -80,6 +85,10 @@ public class TargetDetection : MonoBehaviour
     // GameObject stops walking.
     void StopWalking()
     {
+        if (sound_walk.isPlaying)
+        {
+            sound_walk.Stop();
+        }
         animator.SetBool("move", false);
         agent.destination = transform.position;
     }
@@ -107,6 +116,7 @@ public class TargetDetection : MonoBehaviour
         }
     }
 
+    //Wait for a time before the next Attack.
     IEnumerator wait(float time)
     {
         yield return new WaitForSeconds(time);
