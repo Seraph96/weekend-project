@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 839338580}
   - component: {fileID: 839338579}
   - component: {fileID: 839338578}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -464,10 +464,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34cdf6449dae5bb42913f6732cef51ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 2038869161}
-  offsetX: 0
-  offsetZ: -10
-  offsetY: 10
+  target: {fileID: 2038869167}
+  offset: {x: 0, y: -1, z: 1.2}
+  pitch: 2
 --- !u!1 &2038869161 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1897602917353718, guid: 722ecf17232566e4a81b862e2ca44aa0,
@@ -526,7 +525,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
 --- !u!136 &2038869165
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -541,3 +540,9 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!4 &2038869167 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4436991204886914, guid: 722ecf17232566e4a81b862e2ca44aa0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1335651939}
+  m_PrefabAsset: {fileID: 0}

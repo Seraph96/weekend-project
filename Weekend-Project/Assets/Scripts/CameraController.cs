@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public GameObject player;
-    public float offsetX = 0;
-    public float offsetZ = -10;
-    public float offsetY = 10;
+    public Transform target;
 
-    // Update is called once per frame
-    void Update()
+    public Vector3 offset;
+
+    public float pitch = 2f;
+
+    private float currentZoom = 10f;
+
+    void LateUpdate()
     {
-        this.transform.position = new Vector3 ((player.transform.position.x + offsetX), (player.transform.position.y + offsetY), (player.transform.position.z + offsetZ));
+        transform.position = target.position - offset * currentZoom;
+        transform.LookAt(target.position + Vector3.up * pitch);
     }
 } 
