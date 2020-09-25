@@ -105,6 +105,7 @@ public class TargetDetection : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray.origin, ray.direction, out hit) && mobController.HP > 0)
         {
+            Debug.Log(hit.distance);
             if (hit.distance <= minDistance && attackPossible == true)
             {
                 attackPossible = false;
