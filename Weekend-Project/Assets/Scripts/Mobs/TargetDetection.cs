@@ -104,23 +104,23 @@ public class TargetDetection : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray.origin, ray.direction, out hit) && mobController.HP > 0)
         {
-            Debug.Log(hit.distance);
             if (hit.distance <= minDistance && attackPossible == true)
             {
                 attackPossible = false;
                 Debug.Log("HIT!");
                 animator.SetTrigger("hit");
-                this.gameObject.SendMessage("GetDamage", damage, SendMessageOptions.DontRequireReceiver);
-                //hit.transform.gameObject.SendMessage("GetDamage", damage, SendMessageOptions.DontRequireReceiver);
-                StartCoroutine(wait(animator.GetCurrentAnimatorStateInfo(0).length));
+                StartCoroutine(WaitForDamage(animator.GetCurrentAnimatorStateInfo(0).length, damage));
             }
         }
     }
 
     //Wait for a time before the next Attack.
-    IEnumerator wait(float time)
+    IEnumerator WaitForDamage(float time, int damage)
     {
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(time/2);
+        this.gameObject.SendMessage("GetDamage", damage, SendMessageOptions.DontRequireReceiver);
+        //hit.transform.gameObject.SendMessage("GetDamage", damage, SendMessageOptions.DontRequireReceiver);
+        yield return new WaitForSeconds(time/2);
         attackPossible = true;
         animator.ResetTrigger("hit");
         animator.Play("Idle");

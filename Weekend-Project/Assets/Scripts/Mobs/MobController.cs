@@ -11,11 +11,13 @@ public class MobController : MonoBehaviour
     public GameObject drop;
 
     private Animator animator;
+    private MobLifeBar mobLifeBar;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
+        mobLifeBar = gameObject.GetComponentInChildren<MobLifeBar>();
     }
 
     // If GameObject get hit, it will become damage.
@@ -24,12 +26,14 @@ public class MobController : MonoBehaviour
         if (HP > 0)
         {
             HP = HP - damage;
+            mobLifeBar.lifebar.value = HP;
+
             if (HP <= 0)
             {
                 Debug.Log("BIN TOD!");
                 animator.SetTrigger("death");
-                StartCoroutine(wait(animator.GetCurrentAnimatorStateInfo(0).length/1.5f));
-                Destroy(gameObject, 3);
+                StartCoroutine(WaitForDrop(animator.GetCurrentAnimatorStateInfo(0).length - 0.1f));
+                Destroy(gameObject, animator.GetCurrentAnimatorStateInfo(0).length);
             }
         }
     }
@@ -38,11 +42,11 @@ public class MobController : MonoBehaviour
     {
         for (int i = 0; i < number; i++)
         {
-            Vector3 position = new Vector3(transform.position.x + Random.Range(0f, 0.1f),transform.position.y, transform.position.z + Random.Range(0f, 0.1f));
+            Vector3 position = new Vector3(transform.position.x + Random.Range(-2f, 2f),transform.position.y, transform.position.z + Random.Range(-2f, 2));
             Instantiate(drop, position, transform.rotation);
         }
     }
-    IEnumerator wait(float time)
+    IEnumerator WaitForDrop(float time)
     {
         yield return new WaitForSeconds(time);
         Drop(numberOfDrops);
