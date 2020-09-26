@@ -9,7 +9,6 @@ public class TargetDetection : MonoBehaviour
     public float speed = 1f;
     public float minDistance = 1f;
     public float maxDistance = 10f;
-    public int damage = 1;
     public MobController mobController;
 
     private Transform player;
@@ -46,7 +45,7 @@ public class TargetDetection : MonoBehaviour
         {
             StopWalking();
             RotateToTarget(player.position);
-            HitTarget(damage);
+            HitTarget(mobController.damage);
         }
         else
         {
@@ -111,7 +110,8 @@ public class TargetDetection : MonoBehaviour
                 attackPossible = false;
                 Debug.Log("HIT!");
                 animator.SetTrigger("hit");
-                hit.transform.gameObject.SendMessage("GetDamage", damage, SendMessageOptions.DontRequireReceiver);
+                this.gameObject.SendMessage("GetDamage", damage, SendMessageOptions.DontRequireReceiver);
+                //hit.transform.gameObject.SendMessage("GetDamage", damage, SendMessageOptions.DontRequireReceiver);
                 StartCoroutine(wait(animator.GetCurrentAnimatorStateInfo(0).length));
             }
         }
